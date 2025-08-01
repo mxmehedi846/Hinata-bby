@@ -1,27 +1,34 @@
-module.exports.config = {
-	name: "unsend",
-	version: "1.0.1",
-	hasPermssion: 0,
-	credits: "𝐂𝐘𝐁𝐄𝐑 ☢️_𖣘 -𝐁𝐎𝐓 ⚠️ 𝑻𝑬𝑨𝑴_ ☢️",
-	description: "Gỡ tin nhắn của bot",
-	commandCategory: "system",
-	usages: "unsend",
-	cooldowns: 0
-};
-
-module.exports.languages = {
-	"vi": {
-		"returnCant": "Không thể gỡ tin nhắn của người khác.",
-		"missingReply": "Hãy reply tin nhắn cần gỡ."
+module.exports = {
+	config: {
+		name: "unsend",
+		aliases:["u", "uns"],
+		version: "1.2",
+		author: "NTKhang",
+		countDown: 1,
+		role: 0,
+		description: {
+			vi: "Gỡ tin nhắn của bot",
+			en: "Unsend bot's message"
+		},
+		category: "box chat",
+		guide: {
+			vi: "reply tin nhắn muốn gỡ của bot và gọi lệnh {pn}",
+			en: "reply the message you want to unsend and call the command {pn}"
+		}
 	},
-	"en": {
-		"returnCant": "আরে বলদ অন্য কারো মেসেজ আমি আনসেন্ড করবো কিভাবে পাগল ছাগল",
-		"missingReply": "আপনি আমার কোন মেসেজটি আনসেন্ড করবেন , তা রিপ্লাই করুন 🌺"
-	}
-}
 
-module.exports.run = function({ api, event, getText }) {
-	if (event.messageReply.senderID != api.getCurrentUserID()) return api.sendMessage(getText("returnCant"), event.threadID, event.messageID);
-	if (event.type != "message_reply") return api.sendMessage(getText("missingReply"), event.threadID, event.messageID);
-	return api.unsendMessage(event.messageReply.messageID);
+	langs: {
+		vi: {
+			syntaxError: "Vui lòng reply tin nhắn muốn gỡ của bot"
+		},
+		en: {
+			syntaxError: "Please reply the message you want to unsend"
+		}
+	},
+
+	onStart: async function ({ message, event, api, getLang }) {
+		if (!event.messageReply || event.messageReply.senderID != api.getCurrentUserID())
+			return message.reply(getLang("syntaxError"));
+		message.unsend(event.messageReply.messageID);
 	}
+};
