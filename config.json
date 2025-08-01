@@ -1,6 +1,6 @@
 {
     "language": "en",
-    "keyActive": "bby",
+    "keyActive": "",
     "DeveloperMode": false,
     "autoCreateDB": true,
     "notiGroup": true,
@@ -16,12 +16,12 @@
     "EMAIL": "",
     "PASSWORD": "",
     "OTPKEY": "",
-    "BOTNAME": "Hinata Hyuga =⁠_⁠=",
+    "BOTNAME": "your bby",
     "PREFIX": "!",
     "ADMINBOT": [
-        "61576520552554",
-        "61576520552554",
-        "61576520552554"
+        "100091418287736",
+        "100091418287736",
+        "100091418287736"
     ],
     "NDH": [
         "100000478146113"
@@ -237,3 +237,4 @@
         "delayUnsend": 20
     }
 }
+    
